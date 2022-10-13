@@ -18,7 +18,14 @@ def sorteio(request):
     if user is None:
         error = "Usuário não encontrado. Entre em contato com o admin."
 
-    return render(request, "sorteio.html", {'token': token, 'error': error})
+    return render(
+        request, "sorteio.html",
+        {
+            'token': token,
+            'error': error,
+            'user': user,
+        }
+    )
 
 
 def db(request):
