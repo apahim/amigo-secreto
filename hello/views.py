@@ -13,17 +13,40 @@ def index(request):
 
 def sorteio(request):
     token = request.GET.get('token')
-    queryset = Friends.objects.filter(token=token)
-    if queryset.exists():
-        user = queryset.values()
-    else:
+    test = request.GET.get('test')
+    try:
+        user = Friends.objects.get(token=token)
+        if user.friend is None:
+            friend = Friends.objects.filter(
+                available=True
+            ).exclude(
+                token=token
+            ).exclude(
+                available=False
+            ).order_by('?').first()
+
+            user.friend = friend.token
+            user.save()
+
+            friend.available = False
+            friend.save()
+
+            friend_name = friend.name
+        else:
+            # friend = Friends.objects.get(token=user.friend)
+            # friend_name = friend.name
+            friend_name = None
+
+    except Exception:
         user = None
+        friend_name = None
 
     return render(
         request, "sorteio.html",
         {
             'token': token,
             'user': user,
+            'friend': friend_name,
         }
     )
 

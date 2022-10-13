@@ -5,16 +5,28 @@
   <div class="container">
 
 
-<h2>Sorteio do Amigo Secreto!</h2>
+<h2>Sorteio do Amigo Secreto</h2>
 
 
 <ul>
 
 {% if user is None %}
-    <li>Usuário inválido, entre em contato com o admin.</li>
+    <h3>Usuário inválido, entre em contato com o admin.</h3>
+
+{% elif friend is None %}
+
+    <h3>Olá {{ user.name }},<h3>
+    <h3>Você já sorteou seu amigo secreto, espero que você não tenha esquecido ;) <h3>
+
+{% else %}
+
+    <h3>Olá {{ user.name }},<h3>
+    <h3>Seu amigo secreto é: {{ friend }}!<h3>
+    <h3>SORTEIO ÚNICO, NÃO ESQUEÇA QUEM É SEU AMIGO SECRETO!<h3>
+
+
 {% endif %}
 
-<li>{{ user }}</li>
 
 </ul>
 

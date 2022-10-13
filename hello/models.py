@@ -5,6 +5,7 @@ class Friends(models.Model):
     token = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
     available = models.BooleanField()
+    friend = models.CharField(max_length=255, null=True)
 
 
 # Create your models here.
