@@ -12,17 +12,17 @@ def index(request):
 
 
 def sorteio(request):
-    error = None
     token = request.GET.get('token')
-    user = Friends.objects.filter(token=token)
-    if user is None:
-        error = "Usuário não encontrado. Entre em contato com o admin."
+    queryset = Friends.objects.filter(token=token)
+    if queryset.exists():
+        user = queryset.values()
+    else:
+        user = None
 
     return render(
         request, "sorteio.html",
         {
             'token': token,
-            'error': error,
             'user': user,
         }
     )

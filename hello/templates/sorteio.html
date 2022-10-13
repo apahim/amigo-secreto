@@ -10,8 +10,8 @@
 
 <ul>
 
-{% if error is not None %}
-    <li>{{ error }}</li>
+{% if user is None %}
+    <li>Usuário inválido, entre em contato com o admin.</li>
 {% endif %}
 
 <li>{{ user }}</li>
