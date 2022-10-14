@@ -33,9 +33,9 @@ def sorteio(request):
 
             friend_name = friend.name
         else:
-            friend = Friends.objects.get(token=user.friend)
-            friend_name = friend.name
-            # friend_name = None
+            # friend = Friends.objects.get(token=user.friend)
+            # friend_name = friend.name
+            friend_name = None
 
     except Exception:
         user = None
